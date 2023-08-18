@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.martynwin.com">
-  <title>Martyn Ye&#39;s Playground</title>
+  <title>Martyn&#39;s Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A geek and a dreamer">
+  <meta name="description" content="A geek &amp; a dreamer">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Martyn Ye&#39;s Playground">
+<meta property="og:title" content="Martyn&#39;s Playground">
 <meta property="og:url" content="http://www.martynwin.com/index.html">
-<meta property="og:site_name" content="Martyn Ye&#39;s Playground">
-<meta property="og:description" content="A geek and a dreamer">
+<meta property="og:site_name" content="Martyn&#39;s Playground">
+<meta property="og:description" content="A geek &amp; a dreamer">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Martyn Ye">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Martyn Ye&#39;s Playground" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Martyn&#39;s Playground" type="application/atom+xml">
   
   
     <link rel="icon" href="/assets/favicon.png">
@@ -48,8 +48,10 @@
 			<img src="/assets/avatar.png" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">Martyn Ye</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">A geek &amp; a dreamer</p>
 		
 
 		<nav class="header-menu">
@@ -106,8 +108,10 @@
 				<img src="/assets/avatar.png" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">Martyn Ye</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>A geek &amp; a dreamer<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -161,7 +165,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/08/14/parallel-consumer/">Parallel Consumer Analysis</a>
+      <a class="article-title" href="/2023/08/14/parallel-consumer/">Parallel Consumer General Overview</a>
     </h1>
   
 
@@ -174,20 +178,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
-<p>define a dictionary to store the elements and a vector to store the index of them.<br>the key of removal is to move the tail element to the slot of removal element and update the tail element index.</p>
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
+<p>Parallel Consumer is an open source software to enable fast processing message with less instances<br> This article is to introduce the internal mechanism to share.</p>
 </blockquote>
-<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
+<h2 id="Work-Flow-Chart"><a href="#Work-Flow-Chart" class="headerlink" title="Work Flow Chart"></a>Work Flow Chart</h2><p><img src="/images/parallel_consumer_overview.png" alt="Main Workflow"></p>
+<h2 id="Terminology："><a href="#Terminology：" class="headerlink" title="Terminology："></a>Terminology：</h2><p><strong>AbstractParallelEoSStreamProcessor</strong></p>
 <ul>
-<li>O(1)</li>
+<li>This is the main entry of parallel consumer</li>
+<li>two main components : controlLoop &amp; BrokerPollSystem</li>
+<li>will select the available work container to be applied on the user function</li>
 </ul>
-</blockquote>
-<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
+<p><strong>ControlLoop</strong></p>
 <ul>
-<li>O(n)</li>
+<li>check if the new records, if yes, then will create a new work container</li>
+<li>if it is already processed, updated the offset and commit if needed </li>
 </ul>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RandomizedSet</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Initialize your data structure here.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.storemap = collections.defaultdict(<span class="built_in">int</span>)</span><br><span class="line">        self.vec = []</span><br><span class="line">        self.lens = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">self, val</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Inserts a value to the set. Returns true if the set did not already contain the specified element.</span></span><br><span class="line"><span class="string">        :type val: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> val <span class="keyword">not</span> <span class="keyword">in</span> self.storemap:</span><br><span class="line">            self.storemap[val] = self.lens</span><br><span class="line">            self.vec.append(val)</span><br><span class="line">            self.lens += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, val</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Removes a value from the set. Returns true if the set contained the specified element.</span></span><br><span class="line"><span class="string">        :type val: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> val <span class="keyword">in</span> self.storemap:</span><br><span class="line">            idx = self.storemap[val]</span><br><span class="line">            tail = self.vec.pop()</span><br><span class="line">            <span class="keyword">if</span> idx &lt; <span class="built_in">len</span>(self.vec):</span><br><span class="line">                self.vec[idx] = tail</span><br><span class="line">                self.storemap[tail] = idx</span><br><span class="line">            <span class="keyword">del</span> self.storemap[val]</span><br><span class="line">            self.lens -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getRandom</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Get a random element from the set.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> random.choice(self.vec)</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+<p><strong>BrokerPollSystem</strong></p>
+<ul>
+<li>to poll consumer records from broker</li>
+<li>check if throughput threshold has been reached, if reached, it will pause the consumer</li>
+<li>will add to mailbox queue </li>
+</ul>
+<p><strong>WorkManager</strong></p>
+<ul>
+<li>Sharded, prioritised, offset managed, order controlled, delayed work queue</li>
+<li>PartitionStateManager &amp;&amp; ShardManager</li>
+</ul>
+<p><strong>ShardManager</strong></p>
+<ul>
+<li>Shards are local queues of work to be processed.</li>
+<li>maintain map of shards <code>Map&lt;ShardKey, ProcessingShard&lt;K, V&gt;&gt; processingShards</code></li>
+</ul>
+<p><strong>PartitionStateManager</strong></p>
+<ul>
+<li>maintain map of PartitionState <code>Map&lt;TopicPartition, PartitionState&lt;K, V&gt;&gt; partitionStates</code></li>
+<li>Record the generations of partition assignment, for fencing off invalid work <code>Map&lt;TopicPartition, Long&gt; partitionsAssignmentEpochs</code></li>
+</ul>
+<p><strong>PartitionState</strong></p>
+<ul>
+<li>incompleteOffsets: <code>Offsets beyond the highest committable offset (see getOffsetHighestSequentialSucceeded()) which haven&#39;t totally succeeded. Based on decoded metadata and polled records (not offset ranges)</code></li>
+<li>dirty: <code>if there are offsets to be committed</code></li>
+<li>partitionsAssignmentEpoch: <code>from PartitionStateManager</code></li>
+</ul>
+<p><strong>WorkContainer</strong></p>
+<ul>
+<li>consumer record</li>
+<li>epoch : <code>if stale worker</code></li>
+</ul>
 
       
 
@@ -1156,6 +1193,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary Tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Greedy</a>
               </li>
              
@@ -1164,15 +1205,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Binary Search Tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary Tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Binary Search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Math</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">System Design</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Binary Search Tree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1181,14 +1226,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Heap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">System Design</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Math</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1220,19 +1257,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Deep-First-Search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Bit Manipulation</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
+                <a href="javascript:void(0)" class="js-tag color3">Deep-First-Search</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Trie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Hash Table</a>
               </li>
              
               <li class="article-tag-list-item">
