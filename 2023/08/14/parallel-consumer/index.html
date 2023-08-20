@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://www.martynwin.com">
   <title>Parallel Consumer General Overview | Martyn&#39;s Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Overview Parallel Consumer is an open source software to enable fast processing message with less instances This article is to introduce the internal mechanism to share.  Work Flow Chart Terminology：A">
+  <meta name="description" content="Overview Parallel Consumer is an open source software to enable fast processing message with less instances This article is to introduce the internal mechanism to share.  Work Flow Chart  Terminology：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Parallel Consumer General Overview">
 <meta property="og:url" content="http://www.martynwin.com/2023/08/14/parallel-consumer/index.html">
 <meta property="og:site_name" content="Martyn&#39;s Playground">
-<meta property="og:description" content="Overview Parallel Consumer is an open source software to enable fast processing message with less instances This article is to introduce the internal mechanism to share.  Work Flow Chart Terminology：A">
+<meta property="og:description" content="Overview Parallel Consumer is an open source software to enable fast processing message with less instances This article is to introduce the internal mechanism to share.  Work Flow Chart  Terminology：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.martynwin.com/images/parallel_consumer_overview.png">
+<meta property="og:image" content="http://www.martynwin.com/images/parallel_consumer_partition_state.png">
 <meta property="article:published_time" content="2023-08-14T09:37:37.000Z">
-<meta property="article:modified_time" content="2023-08-18T11:56:38.089Z">
+<meta property="article:modified_time" content="2023-08-19T02:22:18.061Z">
 <meta property="article:author" content="Martyn Ye">
 <meta property="article:tag" content="Open Source">
 <meta name="twitter:card" content="summary">
@@ -185,6 +186,7 @@
 <p>Parallel Consumer is an open source software to enable fast processing message with less instances<br> This article is to introduce the internal mechanism to share.</p>
 </blockquote>
 <h2 id="Work-Flow-Chart"><a href="#Work-Flow-Chart" class="headerlink" title="Work Flow Chart"></a>Work Flow Chart</h2><p><img src="/images/parallel_consumer_overview.png" alt="Main Workflow"></p>
+<p><img src="/images/parallel_consumer_partition_state.png" alt="Partition Events Workflow"></p>
 <h2 id="Terminology："><a href="#Terminology：" class="headerlink" title="Terminology："></a>Terminology：</h2><p><strong>AbstractParallelEoSStreamProcessor</strong></p>
 <ul>
 <li>This is the main entry of parallel consumer</li>
