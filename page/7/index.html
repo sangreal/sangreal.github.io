@@ -158,6 +158,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-HIndex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/14/HIndex/">[LeetCode] H-Index</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/14/HIndex/" class="archive-article-date">
+  	<time datetime="2016-01-14T13:41:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
+<p>Sort it first, then you can find the index when citation[idx] &gt;= idx+1</p>
+</blockquote>
+<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
+<ul>
+<li>O(nlogn)</li>
+</ul>
+</blockquote>
+<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
+<ul>
+<li>O(1)</li>
+</ul>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">hIndex</span>(<span class="params">self, citations</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type citations: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        citations.sort(reverse = <span class="literal">True</span>)</span><br><span class="line">        idx = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="built_in">len</span>(citations)):</span><br><span class="line">            <span class="keyword">if</span> citations[x] &gt;= x+<span class="number">1</span>:</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> idx</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/14/HIndex/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-atoi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

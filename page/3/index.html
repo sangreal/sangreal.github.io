@@ -158,6 +158,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-RemoveDuplicateLetters" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/19/RemoveDuplicateLetters/">[LeetCode] Remove Duplicate Letters</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/19/RemoveDuplicateLetters/" class="archive-article-date">
+  	<time datetime="2016-06-19T09:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
+<p>using a stack to keep the always increasing order of the results.<br>using a set to track the elements containing current answer result.<br>The key point is to ensure the order by comparing the current number with the tail number in the stack only if the counter of it is large than 1</p>
+</blockquote>
+<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
+<ul>
+<li>O(n)</li>
+</ul>
+</blockquote>
+<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
+<ul>
+<li>O(n)</li>
+</ul>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicateLetters</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        store = []</span><br><span class="line">        resultSet = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">        count = collections.Counter(s)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> s:</span><br><span class="line">            count[n] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> n <span class="keyword">in</span> resultSet:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">len</span>(store) &gt; <span class="number">0</span> <span class="keyword">and</span> store[-<span class="number">1</span>] &gt; n <span class="keyword">and</span> count[store[-<span class="number">1</span>]] &gt; <span class="number">0</span>:</span><br><span class="line">                resultSet.remove(store.pop())</span><br><span class="line">            resultSet.add(n)</span><br><span class="line">            store.append(n)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(store)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Greedy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/19/RemoveDuplicateLetters/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-BestTimetoBuyandSellStockwithCooldown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -939,97 +1034,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/05/20/CloneGraph/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Candy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/17/Candy/">[LeetCode] Candy</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/17/Candy/" class="archive-article-date">
-  	<time datetime="2016-05-17T09:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
-<p>two times traversal, first traversal ensure <code>dp[i] &gt; dp[i-1]</code> if <code>rating[i] &gt; rating[i-1]</code><br>and the reverse traversal, to ensure <code>dp[i] &gt; dp[i+1]</code> if <code>rating[i] &gt; rating[i+1]</code></p>
-</blockquote>
-<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">candy</span>(<span class="params">self, ratings</span>):</span><br><span class="line">		<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">		:type ratings: List[int]</span></span><br><span class="line"><span class="string">		:rtype: int</span></span><br><span class="line"><span class="string">		&quot;&quot;&quot;</span></span><br><span class="line">		dp = [<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(ratings))]</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, <span class="built_in">len</span>(ratings)):</span><br><span class="line">			<span class="keyword">if</span> ratings[i] &gt; ratings[i-<span class="number">1</span>]:</span><br><span class="line">				dp[i] = dp[i-<span class="number">1</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="built_in">len</span>(ratings)-<span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">			<span class="keyword">if</span> ratings[j] &gt; ratings[j+<span class="number">1</span>] <span class="keyword">and</span> dp[j] &lt;= dp[j+<span class="number">1</span>]:</span><br><span class="line">				dp[j] += dp[j+<span class="number">1</span>]-dp[j]+<span class="number">1</span></span><br><span class="line">		retsum = <span class="number">0</span></span><br><span class="line">		<span class="keyword">for</span> n <span class="keyword">in</span> dp:</span><br><span class="line">			retsum += n</span><br><span class="line">		<span class="keyword">return</span> retsum</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Greedy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/17/Candy/">展开全文 >></a>
         </p>
       
 

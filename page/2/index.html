@@ -158,6 +158,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-BinaryTreeUpsideDown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/BinaryTreeUpsideDown/">[LeetCode] Binary Tree Upside Down</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/23/BinaryTreeUpsideDown/" class="archive-article-date">
+  	<time datetime="2016-08-22T23:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
+<ul>
+<li>You should use recursion and treat every three nodes as a group</li>
+<li>Then you can find that the left most node must be the root, then we return it as parent node</li>
+<li>remember to reset root’s left node and right node to NULL</li>
+</ul>
+</blockquote>
+<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
+<ul>
+<li>O(n)</li>
+</ul>
+</blockquote>
+<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
+<ul>
+<li>O(n)</li>
+</ul>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">self, root</span>):</span><br><span class="line">		<span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">return</span> root, <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> root.left <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> root.right <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">			<span class="keyword">return</span> root, root</span><br><span class="line"></span><br><span class="line">		parent, newroot = self.helper(root.left)</span><br><span class="line">		parent.right = root</span><br><span class="line">		parent.left = root.right</span><br><span class="line">		root.left, root.right = <span class="literal">None</span>, <span class="literal">None</span></span><br><span class="line">		<span class="keyword">return</span> parent.right, newroot</span><br><span class="line"></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">upsideDownBinaryTree</span>(<span class="params">self, root</span>):</span><br><span class="line">		<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">		:type root: TreeNode</span></span><br><span class="line"><span class="string">		:rtype: TreeNode</span></span><br><span class="line"><span class="string">		&quot;&quot;&quot;</span></span><br><span class="line">		newroot = <span class="literal">None</span></span><br><span class="line">		__ , newroot = self.helper(root)</span><br><span class="line">		<span class="keyword">return</span> newroot</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary Tree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/23/BinaryTreeUpsideDown/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-NextPermutation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -953,101 +1048,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/06/25/MergeKSortedLists/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RemoveDuplicateLetters" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/19/RemoveDuplicateLetters/">[LeetCode] Remove Duplicate Letters</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/19/RemoveDuplicateLetters/" class="archive-article-date">
-  	<time datetime="2016-06-19T09:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
-<p>using a stack to keep the always increasing order of the results.<br>using a set to track the elements containing current answer result.<br>The key point is to ensure the order by comparing the current number with the tail number in the stack only if the counter of it is large than 1</p>
-</blockquote>
-<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicateLetters</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        store = []</span><br><span class="line">        resultSet = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">        count = collections.Counter(s)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> s:</span><br><span class="line">            count[n] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> n <span class="keyword">in</span> resultSet:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">len</span>(store) &gt; <span class="number">0</span> <span class="keyword">and</span> store[-<span class="number">1</span>] &gt; n <span class="keyword">and</span> count[store[-<span class="number">1</span>]] &gt; <span class="number">0</span>:</span><br><span class="line">                resultSet.remove(store.pop())</span><br><span class="line">            resultSet.add(n)</span><br><span class="line">            store.append(n)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(store)</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Greedy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/19/RemoveDuplicateLetters/">展开全文 >></a>
         </p>
       
 

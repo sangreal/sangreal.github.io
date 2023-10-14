@@ -6,7 +6,7 @@
   <link href="http://www.martynwin.com/atom.xml" rel="self"/>
   
   <link href="http://www.martynwin.com/"/>
-  <updated>2023-08-19T02:22:18.061Z</updated>
+  <updated>2023-10-14T13:59:12.430Z</updated>
   <id>http://www.martynwin.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Parallel Consumer Performance Improvement</title>
+    <link href="http://www.martynwin.com/2023/10/11/parallel-availableworker-improvement/"/>
+    <id>http://www.martynwin.com/2023/10/11/parallel-availableworker-improvement/</id>
+    <published>2023-10-11T09:37:37.000Z</published>
+    <updated>2023-10-14T13:59:12.430Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote><p>Parallel Consumer is an open source software to enable fast processing message with less instances<br> This article is to introduce the performance improvement for parallel consumer.</p></blockquote><h2 id="Work-Flow-Chart"><a href="#Work-Flow-Chart" class="headerlink" title="Work Flow Chart"></a>Work Flow Chart</h2><p><img src="/images/para_perf_improvement.jpg" alt="Main Workflow"></p><h2 id="Explanation："><a href="#Explanation：" class="headerlink" title="Explanation："></a>Explanation：</h2><ul><li>Previously to get the available workers, it has to go through all shards and get all workers and fill them out based on certain conditions</li><li>Now, we just to get from an atomic variable and it will be updated when the worker is newly-added / failed / finished</li><li>time improvement : O(n) -&gt; O(1)</li></ul><h2 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h2><p><a href="https://github.com/confluentinc/parallel-consumer/pull/644">https://github.com/confluentinc/parallel-consumer/pull/644</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Overview&quot;&gt;&lt;a href=&quot;#Overview&quot; class=&quot;headerlink&quot; title=&quot;Overview&quot;&gt;&lt;/a&gt;Overview&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Parallel Consumer is an open sour</summary>
+      
+    
+    
+    
+    
+    <category term="Open Source" scheme="http://www.martynwin.com/tags/Open-Source/"/>
+    
+  </entry>
   
   <entry>
     <title>Parallel Consumer General Overview</title>
@@ -485,33 +508,6 @@
     <category term="LeetCode" scheme="http://www.martynwin.com/tags/LeetCode/"/>
     
     <category term="Heap" scheme="http://www.martynwin.com/tags/Heap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[LeetCode] Remove Duplicate Letters</title>
-    <link href="http://www.martynwin.com/2016/06/19/RemoveDuplicateLetters/"/>
-    <id>http://www.martynwin.com/2016/06/19/RemoveDuplicateLetters/</id>
-    <published>2016-06-19T09:37:37.000Z</published>
-    <updated>2023-08-13T09:03:24.829Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote><p>using a stack to keep the always increasing order of the results.<br>using a set to track the elements containing current answer result.<br>The key point is to ensure the order by comparing the current number with the tail number in the stack only if the counter of it is large than 1</p></blockquote><h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote><ul><li>O(n)</li></ul></blockquote><h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote><ul><li>O(n)</li></ul></blockquote><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicateLetters</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        store = []</span><br><span class="line">        resultSet = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">        count = collections.Counter(s)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> s:</span><br><span class="line">            count[n] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> n <span class="keyword">in</span> resultSet:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">len</span>(store) &gt; <span class="number">0</span> <span class="keyword">and</span> store[-<span class="number">1</span>] &gt; n <span class="keyword">and</span> count[store[-<span class="number">1</span>]] &gt; <span class="number">0</span>:</span><br><span class="line">                resultSet.remove(store.pop())</span><br><span class="line">            resultSet.add(n)</span><br><span class="line">            store.append(n)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(store)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Analysis&quot;&gt;&lt;a href=&quot;#Analysis&quot; class=&quot;headerlink&quot; title=&quot;Analysis:&quot;&gt;&lt;/a&gt;Analysis:&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;using a stack to keep the alway</summary>
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="http://www.martynwin.com/tags/LeetCode/"/>
-    
-    <category term="Greedy" scheme="http://www.martynwin.com/tags/Greedy/"/>
-    
-    <category term="Stack" scheme="http://www.martynwin.com/tags/Stack/"/>
     
   </entry>
   
