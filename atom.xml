@@ -6,7 +6,7 @@
   <link href="http://www.martynwin.com/atom.xml" rel="self"/>
   
   <link href="http://www.martynwin.com/"/>
-  <updated>2023-10-14T13:59:12.430Z</updated>
+  <updated>2023-10-22T10:49:26.111Z</updated>
   <id>http://www.martynwin.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode Summary</title>
+    <link href="http://www.martynwin.com/2023/10/22/LeetCodeSummary/"/>
+    <id>http://www.martynwin.com/2023/10/22/LeetCodeSummary/</id>
+    <published>2023-10-22T09:37:37.000Z</published>
+    <updated>2023-10-22T10:49:26.111Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Problems-Summary"><a href="#Problems-Summary" class="headerlink" title="Problems Summary:"></a>Problems Summary:</h1><h2 id="Sliding-Window"><a href="#Sliding-Window" class="headerlink" title="Sliding Window"></a>Sliding Window</h2><ul><li><a href="https://leetcode.com/problems/count-complete-subarrays-in-an-array/">Count Complete Subarrays in an Array</a><blockquote><p><code>ans += (nums.size() - front);</code>  // with number of array possible ended with at pointer value of “front”, since every end between <em>nums size</em> and <em>front</em> are all valid</p></blockquote></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Problems-Summary&quot;&gt;&lt;a href=&quot;#Problems-Summary&quot; class=&quot;headerlink&quot; title=&quot;Problems Summary:&quot;&gt;&lt;/a&gt;Problems Summary:&lt;/h1&gt;&lt;h2 id=&quot;Sliding</summary>
+      
+    
+    
+    
+    
+    <category term="LeetCode" scheme="http://www.martynwin.com/tags/LeetCode/"/>
+    
+    <category term="Summary" scheme="http://www.martynwin.com/tags/Summary/"/>
+    
+  </entry>
   
   <entry>
     <title>Parallel Consumer Performance Improvement</title>
@@ -483,31 +507,6 @@
     <category term="LeetCode" scheme="http://www.martynwin.com/tags/LeetCode/"/>
     
     <category term="Dynamic Programming" scheme="http://www.martynwin.com/tags/Dynamic-Programming/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[LeetCode] Merge k Sorted Lists</title>
-    <link href="http://www.martynwin.com/2016/06/25/MergeKSortedLists/"/>
-    <id>http://www.martynwin.com/2016/06/25/MergeKSortedLists/</id>
-    <published>2016-06-25T09:37:37.000Z</published>
-    <updated>2023-08-13T09:03:24.826Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote><p>define a heap to store the first node of lists, then pop the top node and push back the next node into heap, until the heap is empty</p></blockquote><h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote><ul><li>O(nlogn)</li></ul></blockquote><h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote><ul><li>O(n)</li></ul></blockquote><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">mergeKLists</span>(<span class="params">self, lists</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type lists: List[ListNode]</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(lists) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        heaplist = []</span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> lists:</span><br><span class="line">            <span class="keyword">if</span> node:</span><br><span class="line">                heaplist.append((node.val, node))</span><br><span class="line"></span><br><span class="line">        heapq.heapify(heaplist)</span><br><span class="line">        head = ListNode(-<span class="number">1</span>)</span><br><span class="line">        dummy = head</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(heaplist) &gt; <span class="number">0</span>:</span><br><span class="line">            topval, topnode = heapq.heappop(heaplist)</span><br><span class="line">            dummy.<span class="built_in">next</span> = topnode</span><br><span class="line">            dummy = dummy.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> topnode.<span class="built_in">next</span>:</span><br><span class="line">                heapq.heappush(heaplist, (topnode.<span class="built_in">next</span>.val, topnode.<span class="built_in">next</span>))</span><br><span class="line">        <span class="keyword">return</span> head.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Analysis&quot;&gt;&lt;a href=&quot;#Analysis&quot; class=&quot;headerlink&quot; title=&quot;Analysis:&quot;&gt;&lt;/a&gt;Analysis:&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;define a heap to store the firs</summary>
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="http://www.martynwin.com/tags/LeetCode/"/>
-    
-    <category term="Heap" scheme="http://www.martynwin.com/tags/Heap/"/>
     
   </entry>
   

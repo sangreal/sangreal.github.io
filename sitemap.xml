@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.martynwin.com/2023/10/22/LeetCodeSummary/</loc>
+    
+    <lastmod>2023-10-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.martynwin.com/2023/10/11/parallel-availableworker-improvement/</loc>
     
     <lastmod>2023-10-14</lastmod>
@@ -598,7 +607,7 @@
 
   <url>
     <loc>http://www.martynwin.com/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -606,266 +615,273 @@
   
   <url>
     <loc>http://www.martynwin.com/tags/Misc/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/LeetCode/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Dynamic-Programming/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Binary-Tree/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Greedy/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Breadth-First-Search/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Binary-Search/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Math/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/System-Design/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Binary-Search-Tree/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Backtracking/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Heap/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Design/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Depth-First-Search/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Build-Binary-Tree/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/array/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Tree/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Stack/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Reservoir-Sampling/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Bit-Manipulation/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Deep-First-Search/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Trie/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Hash-Table/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Two-Pointers/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/String/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Android/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Github/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Data-Structure-Design/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/C/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Sort/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Linked-List/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Bit-Manipulation/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/LintCode/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Merge-Sort/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Mafia-fight/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Array/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Heap-Sort/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://www.martynwin.com/tags/Open-Source/</loc>
-    <lastmod>2023-10-14</lastmod>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.martynwin.com/tags/Summary/</loc>
+    <lastmod>2023-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

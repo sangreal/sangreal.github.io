@@ -6,20 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.martynwin.com">
-  <title>[LeetCode] Paint House | Martyn&#39;s Playground</title>
+  <title>Tag: Summary | Martyn&#39;s Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Analysis: Typical dynamic programming issue. We define dp[i][j] represents when last i houses painted with minimum cost when i-1th house painted with jth colorThe we have:    dp &#x3D; [[0 for i in xrange(">
-<meta property="og:type" content="article">
-<meta property="og:title" content="[LeetCode] Paint House">
-<meta property="og:url" content="http://www.martynwin.com/2016/04/28/PaintHouse/index.html">
+  <meta name="description" content="A geek &amp; a dreamer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Martyn&#39;s Playground">
+<meta property="og:url" content="http://www.martynwin.com/tags/Summary/index.html">
 <meta property="og:site_name" content="Martyn&#39;s Playground">
-<meta property="og:description" content="Analysis: Typical dynamic programming issue. We define dp[i][j] represents when last i houses painted with minimum cost when i-1th house painted with jth colorThe we have:    dp &#x3D; [[0 for i in xrange(">
+<meta property="og:description" content="A geek &amp; a dreamer">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-04-28T11:37:37.000Z">
-<meta property="article:modified_time" content="2023-08-13T09:03:24.827Z">
 <meta property="article:author" content="Martyn Ye">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="Dynamic Programming">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Martyn&#39;s Playground" type="application/atom+xml">
@@ -160,73 +156,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-PaintHouse" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      [LeetCode] Paint House
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2023/10/22/LeetCodeSummary/" class="archive-article-date">
+  	<time datetime="2023-10-22T09:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2023/10/22/LeetCodeSummary/">LeetCode Summary</a>
     </h1>
   
 
-        
-        <a href="/2016/04/28/PaintHouse/" class="archive-article-date">
-  	<time datetime="2016-04-28T11:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
-<p>Typical dynamic programming issue. We define dp[i][j] represents when last i houses painted with minimum cost when i-1th house painted with jth color<br>The we have:</p>
-</blockquote>
-<hr>
-<blockquote>
-<p><strong>dp = [[0 for i in xrange(3)] for j in xrange(len(costs)+1)]</strong></p>
-</blockquote>
-<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment"># @param &#123;int[][]&#125; costs n x 3 cost matrix</span></span><br><span class="line">    <span class="comment"># @return &#123;int&#125; an integer, the minimum cost to paint all houses</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minCost</span>(<span class="params">self, costs</span>):</span><br><span class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">3</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="built_in">len</span>(costs)+<span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, <span class="built_in">len</span>(costs)+<span class="number">1</span>):</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="built_in">min</span>(dp[i-<span class="number">1</span>][<span class="number">1</span>], dp[i-<span class="number">1</span>][<span class="number">2</span>]) + costs[i-<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">            dp[i][<span class="number">1</span>] = <span class="built_in">min</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>], dp[i-<span class="number">1</span>][<span class="number">2</span>]) + costs[i-<span class="number">1</span>][<span class="number">1</span>]</span><br><span class="line">            dp[i][<span class="number">2</span>] = <span class="built_in">min</span>(dp[i-<span class="number">1</span>][<span class="number">1</span>], dp[i-<span class="number">1</span>][<span class="number">0</span>]) + costs[i-<span class="number">1</span>][<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(dp[<span class="built_in">len</span>(costs)][<span class="number">0</span>], dp[<span class="built_in">len</span>(costs)][<span class="number">1</span>], dp[<span class="built_in">len</span>(costs)][<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -236,121 +195,25 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dynamic Programming</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Summary</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.martynwin.com/2016/04/28/PaintHouse/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2016/04/30/OpenSSLLibCurl/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Build Scripts for OpenSSL and Libcurl for Android
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/04/28/PaintHouseII/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[LeetCode] Paint House II</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -373,9 +236,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
