@@ -6,7 +6,7 @@
   <link href="http://www.martynwin.com/atom.xml" rel="self"/>
   
   <link href="http://www.martynwin.com/"/>
-  <updated>2023-10-22T10:49:26.111Z</updated>
+  <updated>2024-09-01T02:37:51.341Z</updated>
   <id>http://www.martynwin.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Parallel Consumer Message Loss in frequent rebalancing and restart</title>
+    <link href="http://www.martynwin.com/2024/09/01/parallel-commit-fix/"/>
+    <id>http://www.martynwin.com/2024/09/01/parallel-commit-fix/</id>
+    <published>2024-09-01T10:37:37.000Z</published>
+    <updated>2024-09-01T02:37:51.341Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote><p>When application using parallel consumer experiencing frequent rebalancing the restart, there is possibility that very few messages will be lost<br> This article is to explain the root cause of this kind of message loss.</p></blockquote><h2 id="Work-Flow-Chart"><a href="#Work-Flow-Chart" class="headerlink" title="Work Flow Chart"></a>Work Flow Chart</h2><p><img src="/images/commit_flow.png" alt="Potential Issue Workflow"></p><h2 id="Explanation："><a href="#Explanation：" class="headerlink" title="Explanation："></a>Explanation：</h2><ul><li>In the current work flow, the commit offset per partition is control by <strong>offsetHighestSeen</strong>, while the increment of this var is changed as soon as the record is polled from kafka topic, even before processing it.</li><li>While the committing offset, it is periodical. Therefore it is potential that the offset is committed even before the message is actually processed. In normal case they are fine. But as the flow chart showed above, when the parallel consumer is beginning to close, and when the message is polled but yet to reach mailbox queue and working threadpool, even when in closing phase, para-consumer will try to drain the mailbox queue and waiting for the task to finish in threadpool. The message cannot be processed.</li><li>the fix is to use <strong>offsetHighestSucceeded</strong> instead of <strong>offsetHighestSeen</strong> to make sure the offset will be increased only when it is processed successfully.</li></ul><h2 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Overview&quot;&gt;&lt;a href=&quot;#Overview&quot; class=&quot;headerlink&quot; title=&quot;Overview&quot;&gt;&lt;/a&gt;Overview&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;When application using parallel c</summary>
+      
+    
+    
+    
+    
+    <category term="Open Source" scheme="http://www.martynwin.com/tags/Open-Source/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode Summary</title>
@@ -482,31 +505,6 @@
     <category term="LeetCode" scheme="http://www.martynwin.com/tags/LeetCode/"/>
     
     <category term="Heap" scheme="http://www.martynwin.com/tags/Heap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>[LeetCode] Largest Divisible Subset</title>
-    <link href="http://www.martynwin.com/2016/06/28/LargestDivisibleSubset/"/>
-    <id>http://www.martynwin.com/2016/06/28/LargestDivisibleSubset/</id>
-    <published>2016-06-28T09:37:37.000Z</published>
-    <updated>2023-08-13T09:03:24.824Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote><p>we must sort the list first. According to the rule: <strong>if b%a == 0 c%b == 0, then c%a == 0</strong><br>we can refer to the Longest Increasing Sequence and using a <code>parents</code> array to represent the subset</p></blockquote><h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote><ul><li>O(n^2)</li></ul></blockquote><h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote><ul><li>O(n)</li></ul></blockquote><h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">largestDivisibleSubset</span>(<span class="params">self, nums</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">        dp = [<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n)]</span><br><span class="line">        curnums = <span class="built_in">sorted</span>(nums)</span><br><span class="line">        parents = [-<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(i):</span><br><span class="line">                <span class="keyword">if</span> curnums[i] % curnums[j] == <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">if</span> dp[i] &lt; dp[j]+<span class="number">1</span>:</span><br><span class="line">                        dp[i] = dp[j]+<span class="number">1</span></span><br><span class="line">                        parents[i] = j</span><br><span class="line"></span><br><span class="line">        retlist = []</span><br><span class="line">        maxidx, maxval = <span class="number">0</span>, dp[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">if</span> dp[i] &gt; maxval:</span><br><span class="line">                maxval = dp[i]</span><br><span class="line">                maxidx = i</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> maxidx &gt;= <span class="number">0</span>:</span><br><span class="line">            retlist.append(curnums[maxidx])</span><br><span class="line">            <span class="keyword">if</span> parents[maxidx] == -<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                maxidx = parents[maxidx]</span><br><span class="line">        <span class="keyword">return</span> retlist</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Analysis&quot;&gt;&lt;a href=&quot;#Analysis&quot; class=&quot;headerlink&quot; title=&quot;Analysis:&quot;&gt;&lt;/a&gt;Analysis:&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;we must sort the list first. Ac</summary>
-      
-    
-    
-    
-    
-    <category term="LeetCode" scheme="http://www.martynwin.com/tags/LeetCode/"/>
-    
-    <category term="Dynamic Programming" scheme="http://www.martynwin.com/tags/Dynamic-Programming/"/>
     
   </entry>
   

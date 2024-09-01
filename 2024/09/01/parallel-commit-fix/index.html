@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.martynwin.com">
-  <title>atoi implementation | Martyn&#39;s Playground</title>
+  <title>Parallel Consumer Message Loss in frequent rebalancing and restart | Martyn&#39;s Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="需要注意的地方  1、检查字符串是否为空  2、对非法输入，返回0，并设置全局变量  3、溢出  4、空字符串””  输入字符串只有”+”或”-“号   12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364long">
+  <meta name="description" content="Overview When application using parallel consumer experiencing frequent rebalancing the restart, there is possibility that very few messages will be lost This article is to explain the root cause of t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="atoi implementation">
-<meta property="og:url" content="http://www.martynwin.com/2015/12/07/atoi/index.html">
+<meta property="og:title" content="Parallel Consumer Message Loss in frequent rebalancing and restart">
+<meta property="og:url" content="http://www.martynwin.com/2024/09/01/parallel-commit-fix/index.html">
 <meta property="og:site_name" content="Martyn&#39;s Playground">
-<meta property="og:description" content="需要注意的地方  1、检查字符串是否为空  2、对非法输入，返回0，并设置全局变量  3、溢出  4、空字符串””  输入字符串只有”+”或”-“号   12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364long">
+<meta property="og:description" content="Overview When application using parallel consumer experiencing frequent rebalancing the restart, there is possibility that very few messages will be lost This article is to explain the root cause of t">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2015-12-06T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-13T09:03:24.831Z">
+<meta property="og:image" content="http://www.martynwin.com/images/commit_flow.png">
+<meta property="article:published_time" content="2024-09-01T10:37:37.000Z">
+<meta property="article:modified_time" content="2024-09-01T02:37:51.341Z">
 <meta property="article:author" content="Martyn Ye">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Open Source">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.martynwin.com/images/commit_flow.png">
   
     <link rel="alternative" href="/atom.xml" title="Martyn&#39;s Playground" type="application/atom+xml">
   
@@ -159,41 +161,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-atoi" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-parallel-commit-fix" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      atoi implementation
+      Parallel Consumer Message Loss in frequent rebalancing and restart
     </h1>
   
 
         
-        <a href="/2015/12/07/atoi/" class="archive-article-date">
-  	<time datetime="2015-12-06T15:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-12-07</time>
+        <a href="/2024/09/01/parallel-commit-fix/" class="archive-article-date">
+  	<time datetime="2024-09-01T10:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-09-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>需要注意的地方</p>
-<ul>
-<li><p>1、检查字符串是否为空</p>
-</li>
-<li><p>2、对非法输入，返回0，并设置全局变量</p>
-</li>
-<li><p>3、溢出</p>
-</li>
-<li><p>4、空字符串””</p>
-</li>
-<li><p>输入字符串只有”+”或”-“号</p>
-</li>
+        <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><blockquote>
+<p>When application using parallel consumer experiencing frequent rebalancing the restart, there is possibility that very few messages will be lost<br> This article is to explain the root cause of this kind of message loss.</p>
+</blockquote>
+<h2 id="Work-Flow-Chart"><a href="#Work-Flow-Chart" class="headerlink" title="Work Flow Chart"></a>Work Flow Chart</h2><p><img src="/images/commit_flow.png" alt="Potential Issue Workflow"></p>
+<h2 id="Explanation："><a href="#Explanation：" class="headerlink" title="Explanation："></a>Explanation：</h2><ul>
+<li>In the current work flow, the commit offset per partition is control by <strong>offsetHighestSeen</strong>, while the increment of this var is changed as soon as the record is polled from kafka topic, even before processing it.</li>
+<li>While the committing offset, it is periodical. Therefore it is potential that the offset is committed even before the message is actually processed. In normal case they are fine. But as the flow chart showed above, when the parallel consumer is beginning to close, and when the message is polled but yet to reach mailbox queue and working threadpool, even when in closing phase, para-consumer will try to drain the mailbox queue and waiting for the task to finish in threadpool. The message cannot be processed.</li>
+<li>the fix is to use <strong>offsetHighestSucceeded</strong> instead of <strong>offsetHighestSeen</strong> to make sure the offset will be increased only when it is processed successfully.</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">StrToIntCore</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str, <span class="type">bool</span> minus)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Status</span> &#123;kValid = <span class="number">0</span>, kInvalid&#125;;</span><br><span class="line"><span class="type">int</span> g_nStatus = kValid;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">StrToInt</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    g_nStatus = kInvalid;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(str != <span class="literal">NULL</span> &amp;&amp; *str != <span class="string">&#x27;\0&#x27;</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">bool</span> minus = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(*str == <span class="string">&#x27;+&#x27;</span>)</span><br><span class="line">            str ++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(*str == <span class="string">&#x27;-&#x27;</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            str ++;</span><br><span class="line">            minus = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(*str != <span class="string">&#x27;\0&#x27;</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            num = <span class="built_in">StrToIntCore</span>(str, minus);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">StrToIntCore</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* digit, <span class="type">bool</span> minus)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(*digit != <span class="string">&#x27;\0&#x27;</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(*digit &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; *digit &lt;= <span class="string">&#x27;9&#x27;</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> flag = minus ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">            num = num * <span class="number">10</span> + flag * (*digit - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>((!minus &amp;&amp; num &gt; <span class="number">0x7FFFFFFF</span>) </span><br><span class="line">                || (minus &amp;&amp; num &lt; (<span class="type">signed</span> <span class="type">int</span>)<span class="number">0x80000000</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                num = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            digit++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">        &#123;</span><br><span class="line">            num = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(*digit == <span class="string">&#x27;\0&#x27;</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        g_nStatus = kValid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h2>
       
 
       
@@ -227,7 +224,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Open Source</a>
         		</li>
       		
 		</ul>
@@ -283,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.martynwin.com/2015/12/07/atoi/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.martynwin.com/2024/09/01/parallel-commit-fix/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -297,18 +294,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/01/14/HIndex/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          [LeetCode] H-Index
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/12/01/MinimumHeightTrees/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">[Leetcode] Minimum Height Trees</div>
+    <a href="/2023/10/22/LeetCodeSummary/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode Summary</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -351,7 +339,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Martyn Ye
+    		&copy; 2024 Martyn Ye
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

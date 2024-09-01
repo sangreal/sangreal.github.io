@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.martynwin.com/2024/09/01/parallel-commit-fix/</loc>
+    <lastmod>2024-09-01</lastmod>
+  </url>
+  <url>
     <loc>http://www.martynwin.com/2023/10/22/LeetCodeSummary/</loc>
     <lastmod>2023-10-22</lastmod>
   </url>
@@ -33,7 +37,7 @@
     <lastmod>2023-08-13</lastmod>
   </url>
   <url>
-    <loc>http://www.martynwin.com/2015/12/07/atoi/</loc>
+    <loc>http://www.martynwin.com/2015/12/06/atoi/</loc>
     <lastmod>2023-08-13</lastmod>
   </url>
   <url>
@@ -129,7 +133,7 @@
     <lastmod>2023-08-13</lastmod>
   </url>
   <url>
-    <loc>http://www.martynwin.com/2015/12/01/MinimumHeightTrees/</loc>
+    <loc>http://www.martynwin.com/2015/11/30/MinimumHeightTrees/</loc>
     <lastmod>2023-08-13</lastmod>
   </url>
   <url>

@@ -158,6 +158,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-RecoverBinaryTree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/09/RecoverBinaryTree/">[LeetCode] Recover Binary Search Tree</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/09/RecoverBinaryTree/" class="archive-article-date">
+  	<time datetime="2016-03-09T09:37:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
+<p>Use in-order traversal to find the disorder node pairs.</p>
+<blockquote>
+<ul>
+<li>If there is one pair: that means the swap nodes are adjacent.</li>
+<li>If ther are two pair: they are not next to each other.</li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>Finally swap them by value. This is not the optimal solution. BTW</p>
+</blockquote>
+<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
+<ul>
+<li>O(n)</li>
+</ul>
+</blockquote>
+<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
+<ul>
+<li>O(n)</li>
+</ul>
+</blockquote>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">recoverTree</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: void Do not return anything, modify root in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>: <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        vec = []</span><br><span class="line">        prev = <span class="literal">None</span></span><br><span class="line">        node1, node2 = <span class="literal">None</span>,<span class="literal">None</span></span><br><span class="line">        p = root</span><br><span class="line"></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(vec) &gt; <span class="number">0</span> <span class="keyword">or</span> p <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">if</span> p <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                vec.append(p)</span><br><span class="line">                p = p.left</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p = vec.pop()</span><br><span class="line">                <span class="keyword">if</span> prev <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    prev = p</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">if</span> prev.val &gt; p.val:</span><br><span class="line">                        count += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">if</span> node1 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                            node1 = prev</span><br><span class="line">                            node2 = p</span><br><span class="line">                        <span class="keyword">elif</span> count &gt; <span class="number">1</span>:</span><br><span class="line">                            node2 = p</span><br><span class="line">                prev = p</span><br><span class="line">                p = p.right</span><br><span class="line"></span><br><span class="line">        node1.val, node2.val = node2.val, node1.val</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/09/RecoverBinaryTree/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-QueueUsingStacks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -967,97 +1067,6 @@
 
 
   
-    <article id="post-RepeatedDNASequences" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/17/RepeatedDNASequences/">[LeetCode] Repeated DNA Sequences</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/17/RepeatedDNASequences/" class="archive-article-date">
-  	<time datetime="2016-01-17T13:12:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h2><blockquote>
-<p>If we use the string sequence as the hash map’s key, then the space limitation will be exceeded. Therefore we should use the bit to represent the genome elements and the bit mask as well.</p>
-</blockquote>
-<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity:"></a>Time Complexity:</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Space-Complexity："><a href="#Space-Complexity：" class="headerlink" title="Space Complexity："></a>Space Complexity：</h2><blockquote>
-<ul>
-<li>O(n)</li>
-</ul>
-</blockquote>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findRepeatedDnaSequences</span>(<span class="params">self, s</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        retStr = []</span><br><span class="line">        mapcnt = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line">        mapdict = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">0</span>, <span class="string">&#x27;C&#x27;</span>:<span class="number">1</span>, <span class="string">&#x27;G&#x27;</span>:<span class="number">2</span>, <span class="string">&#x27;T&#x27;</span>:<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> xrange(<span class="number">0</span>, <span class="built_in">len</span>(s)):</span><br><span class="line">        	<span class="built_in">sum</span> = (<span class="number">4</span>*<span class="built_in">sum</span> + mapdict[s[n]]) &amp; <span class="number">0xFFFFF</span></span><br><span class="line">        	<span class="keyword">if</span> n &lt; <span class="number">9</span>:</span><br><span class="line">        		<span class="keyword">continue</span></span><br><span class="line">        	mapcnt[<span class="built_in">sum</span>] = mapcnt.get(<span class="built_in">sum</span>, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        	<span class="keyword">if</span> mapcnt[<span class="built_in">sum</span>] == <span class="number">2</span>:</span><br><span class="line">        		retStr.append(s[n-<span class="number">9</span>:n+<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> retStr</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Bit-Manipulation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/17/RepeatedDNASequences/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
@@ -1072,7 +1081,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2023 Martyn Ye
+    		&copy; 2024 Martyn Ye
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
